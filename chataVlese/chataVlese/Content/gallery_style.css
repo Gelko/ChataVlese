@@ -1,0 +1,127 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:700);
+h1 {
+  text-align: center;
+  font-family: Montserrat,sans-serif;
+  color: #333;
+}
+
+.accordion {
+  width: 140%;
+  overflow: hidden;
+  margin: 50px auto;
+}
+.accordion ul {
+  width: 140%;
+  display: table;
+  table-layout: fixed;
+  margin: 0;
+  padding: 0;
+}
+.accordion ul li {
+  display: table-cell;
+  vertical-align: bottom;
+  position: relative;
+  width: 10.666%;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: left top;
+  transition: all 500ms ease;
+}
+.accordion ul li div {
+  display: block;
+  overflow: hidden;
+  width: 140%;
+}
+.accordion ul li div a {
+  display: block;
+  height: 100px;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  vertical-align: bottom;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  color: #fff;
+  text-decoration: none;
+  font-family: Open Sans, sans-serif;
+  transition: all 200ms ease;
+}
+.accordion ul li div a * {
+  opacity: 0;
+  margin: 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  position: relative;
+  z-index: 5;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-transform: translateX(-20px);
+  transform: translateX(-20px);
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
+}
+.accordion ul li div a h2 {
+  font-family: Montserrat,sans-serif;
+  text-overflow: clip;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  top: 160px;
+}
+.accordion ul li div a p {
+  top: 160px;
+  font-size: 13.5px;
+}
+.accordion ul li:nth-child(1) {
+  background-image: url("/Images/obyvacka_1024.jpg");
+  background-size:cover;
+}
+.accordion ul li:nth-child(2) {
+  background-image: url("/Images/kuchyna_1920.jpg");
+  background-size:cover;
+}
+.accordion ul li:nth-child(3) {
+  background-image: url("/Images/2lozkova_izba_1920.jpg");
+  background-size:cover;
+}
+.accordion ul li:nth-child(4) {
+  background-image: url("/Images/2lozkova_izba2_1920.jpg");
+  background-size:cover;
+}
+.accordion ul li:nth-child(5) {
+  background-image: url("/Images/3lozkova_izba_1920.jpg");
+  background-size:cover;
+}
+.accordion ul li:nth-child(6) {
+  background-image: url("/Images/altanok_1920.jpg");
+  background-size:cover;
+}
+.accordion ul:hover li {
+  width: 2%;
+}
+.accordion ul:hover li:hover {
+  width: 100%;
+}
+.accordion ul:hover li:hover a {
+  background: rgba(0, 0, 0, 0.4);
+}
+.accordion ul:hover li:hover a * {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.about {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: #666;
+}
+.about a {
+  color: blue;
+  text-decoration: none;
+}
+.about a:hover {
+  text-decoration: underline;
+}

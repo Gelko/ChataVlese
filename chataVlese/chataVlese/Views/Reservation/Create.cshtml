@@ -1,0 +1,193 @@
+﻿@model chataVlese.Models.Reservation
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!--vycitam z DB vsetky rezervacie od aktualneho dna-->
+@{
+    String reservations = "";
+
+    foreach (var item in ViewData["Reservations"] as IEnumerable<chataVlese.Models.Reservation>)
+    {
+        if (item.DateFrom != null && item.DateTo != null)
+        {
+            reservations += "{month: 1, datestart: `" + item.DateFrom.ToString("MM-dd-yyyy") + "`, dateend: `" + item.DateTo.ToString("MM-dd-yyyy") + "`},";
+        }
+
+    }
+
+    if (!reservations.Equals(""))
+    {
+        reservations = "[" + reservations + "]";
+    }
+    else
+    {
+        reservations = "[{month: 1, datestart: `01-01-2000`,dateend:`02-01-2000`}]";
+    }
+}
+
+<div class="calendar">
+    <div class="content">
+        <h2>Kalendár obsadenosti</h2>
+    </div>
+    <div id="my_holder_div"></div>
+    <script type="text/javascript" src="/calendar/ng_all.js"></script>
+    <script type="text/javascript" src="/calendar/components/calendar.js"></script>
+    <script type="text/javascript">
+        ng.ready(function () {
+            var my_cal = new ng.Calendar({
+                object: 'my_holder_div',
+                visible: true,
+                num_months: 3,
+                allow_selection: false,
+                hide_clear_button:true,
+                hide_view_all_dates_button:true,
+                end_date: 'year+2',
+                selected_date: 'today',
+                max_selection: 14,
+                allow_weekend_selection: true
+            });
+
+        });
+
+        var events_dates = @reservations
+
+        // writing custom color styles
+        // this can be done in the server side. It's done in JS for illustration purposes
+        var st = ['<style>'];
+        st.push('/* This tag was generated using JavaScript, please ignore it */');
+        for (var i=0; i < events_dates.length; i++){
+            // we need to change the - to / in the dates
+            // for older browsers
+            var st_dt = events_dates[i].datestart.replace(/-/g, '/');
+            st_dt = new Date(Date.parse(st_dt));
+
+            var en_dt = events_dates[i].dateend.replace(/-/g, '/');
+            en_dt = new Date(Date.parse(en_dt));
+
+            var slctr = [];
+            while (st_dt.getTime() <= en_dt.getTime())
+            {
+                // each date table cell has a class name [css_prefix]date_[month]_[date]_[year]
+                slctr.push('.ng_cal_date_'+st_dt.print('n_j_Y'));
+                st_dt.setDate(st_dt.getDate()+1);
+            }
+
+            st.push(slctr.join() + ' {background-color:#ff0000;}');
+        }
+
+        st.push('</style>');
+        document.write(st.join("\n"));
+        
+    </script>
+</div>
+
+<div class="pricelist">
+    <h2>Cenník</h2>
+    <p>
+        100 Eur/cela chata noc, min 2 noci
+
+        Silvester:
+        130 Eur/cela chata noc min 3 noci
+        Kapacita 12 osôb
+    </p>
+    
+</div>
+
+<div class="content">
+    <h2>Rezervácia pobytu</h2>
+</div>
+
+<div class="content">
+    <div class="reservation">
+        <br/>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <table align="center">
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.DateFrom)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DateFrom)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.DateFrom)
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.DateTo)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.DateTo)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.DateTo)
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.Persons)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Persons)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Persons)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.FirstName)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.FirstName)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.LastName)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.LastName)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.PhoneNr)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.PhoneNr)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.PhoneNr)
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.Email)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Email)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Comment)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Comment)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Comment)
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Rezervovať" />
+    <br />
+    <br />
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

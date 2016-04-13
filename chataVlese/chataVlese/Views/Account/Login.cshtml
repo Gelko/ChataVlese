@@ -1,0 +1,57 @@
+﻿@model chataVlese.Models.LoginModel
+
+@{
+    ViewBag.Title = "Prihlásenie";
+}
+
+<div class="admin_content">
+<!--<section id="loginForm">-->
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+    <h2>Prihlásenie</h2>
+        
+    <table align="center">
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.UserName)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Password)
+            </td>
+            <td>
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </td>
+        </tr>
+    </table>
+        
+    <table align="center">
+        <tr>
+            <td>
+                <input type="submit" value="Prihlásiť" />
+            </td>
+        </tr>
+    </table>
+        
+    }
+</div>
+<!--</section>-->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

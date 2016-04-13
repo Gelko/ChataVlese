@@ -1,0 +1,86 @@
+﻿@model chataVlese.Models.Feedback
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="admin_content">
+
+    <h2>Úprava komentára</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        
+        @Html.HiddenFor(model => model.FeedbackID)
+    <table align="center">
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Rating)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Rating)
+                    @Html.ValidationMessageFor(model => model.Rating)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Comment)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Comment)
+                    @Html.ValidationMessageFor(model => model.Comment)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Date_In)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Date_In)
+                    @Html.ValidationMessageFor(model => model.Date_In)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td><input type="submit" value="Save" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>@Html.ActionLink("Back to List", "Index", null, new { @class = "ActionLinkBtn" })</td>
+        </tr>
+    </table>   
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

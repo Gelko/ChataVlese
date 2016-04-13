@@ -1,0 +1,77 @@
+﻿@model IEnumerable<chataVlese.Models.Reservation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="admin_content">
+
+    <h2>Zoznam rezervácií</h2>
+
+    <table align="center" width="750">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Persons)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.ActionLink("Upraviť", "Edit", new { id = item.ReservationID }, new { @class = "ActionLinkBtn" }) |
+                    @Html.ActionLink("Detail", "Details", new { id = item.ReservationID }, new { @class = "ActionLinkBtn" }) |
+                    @Html.ActionLink("Vymazať", "Delete", new { id = item.ReservationID }, new { @class = "ActionLinkBtn" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

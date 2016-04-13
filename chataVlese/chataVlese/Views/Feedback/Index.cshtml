@@ -1,0 +1,48 @@
+﻿@model IEnumerable<chataVlese.Models.Feedback>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="admin_content">
+
+    <h2>Zoznam komentárov</h2>
+
+    <table width= "700" align="center">
+
+        <tr>
+            <th width="20">
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th width="50">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th width="160"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Úpravť", "Edit", new { id = item.FeedbackID },new {@class="ActionLinkBtn"}) |
+                    @Html.ActionLink("Detaily", "Details", new { id = item.FeedbackID }, new { @class = "ActionLinkBtn" }) |
+                    @Html.ActionLink("Vymazať", "Delete", new { id = item.FeedbackID }, new { @class = "ActionLinkBtn" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

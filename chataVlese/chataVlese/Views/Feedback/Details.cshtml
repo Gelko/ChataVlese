@@ -1,0 +1,88 @@
+﻿@model chataVlese.Models.Feedback
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="admin_content">
+
+    <h2>Details</h2>
+
+    <table align="center" widht="600">
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Comment)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Comment)
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Name)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Rating)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Rating)
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Is_Valid)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Is_Valid)
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Date_In)
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Date_In)
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.FeedbackID }, new { @class = "ActionLinkBtn" })
+            </td>
+            <td>
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "ActionLinkBtn" })
+            </td>
+        </tr>
+
+    </table>
+
+</div>

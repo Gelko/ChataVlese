@@ -1,0 +1,82 @@
+﻿@model IEnumerable<chataVlese.Models.Feedback>
+
+@{
+    ViewBag.Title = "Domov";
+}
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Circular Content Carousel with jQuery" />
+<meta name="keywords" content="jquery, conent slider, content carousel, circular, expanding, sliding, css3" />
+<meta name="author" content="Codrops" />
+<link rel="shortcut icon" href="../favicon.ico">
+
+<div class="index_content">
+    <h1>Vitajte</h1>
+    <p>
+        Táto stránka slúži na informovanie záujemcov o prenájom rekreačného zariadenia Chata Mažgút s možnosťou online rezervácie.
+    </p>
+    <p>
+        Chata sa nachádza v Žilinskom regióne blízko obce Terchová, kde je veľa možností ako príjemne stráviť deň. Viac informácií o
+        aktivitách nájdete v sekcii aktivity.
+    </p>
+    <p>
+        Chata sa nachádza približne 20 km od Žiliny, smerom na obec Terchová. K chate vedie poľná cesta dlhá, približne 2km. <b>Cesta však nie je zjazdná v zimnom období.</b>
+    </p>
+    <p>
+        Chata je obývateľná celoročne. Vedie k nej poľná cesta, ktorá je dlhá približne 2km. Parkovať je možné až pri chate.
+    </p>
+    <br />
+    <h2>
+        Tešíme sa na Vašu návštevu!
+    </h2>
+    <br />
+    
+</div>
+
+<br />
+
+<div id="ca-container" class="ca-container">
+    <div class="add_feedback">
+        <nav class="cl-effect-1" id="cl-effect-1">
+            <a href="/Feedback/Create">+ Pridať hodnotenie</a>
+        </nav>
+    </div>
+    <div class="ca-wrapper">
+        @{
+            foreach (var item in Model.OrderByDescending(x => x.Date_In))
+            {
+                <div class="ca-item">
+                    <div class="ca-item-bg"></div>
+                    <div class="ca-item-main">
+                        @for (int i = 0; i < item.Rating; i++)
+                        {
+                            <img src="~/Images/star.png" />
+                        }
+                        <h4>
+                            <span class="ca-quote">“</span>
+                            <span>
+                                @Html.DisplayFor(modelItem => item.Comment)
+                            </span>
+                            <span>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+    
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="/CircularContentCarousel/js/jquery.easing.1.3.js"></script>
+<!-- the jScrollPane script -->
+<script type="text/javascript" src="/CircularContentCarousel/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/CircularContentCarousel/js/jquery.contentcarousel.js"></script>
+<script type="text/javascript">
+    $('#ca-container').contentcarousel();
+</script>
+
+

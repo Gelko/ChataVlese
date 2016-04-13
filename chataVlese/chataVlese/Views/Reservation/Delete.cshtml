@@ -1,0 +1,112 @@
+﻿@model chataVlese.Models.Reservation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="admin_content">
+
+    <h2>Vymazať rezerváciu</h2>
+
+    <h3>Naozaj chcete vymazať rezerváciu?</h3>
+
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <table align="center">
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.DateFrom)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.DateFrom)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.DateFrom)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.DateTo)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.DateTo)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.DateTo)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Persons)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Persons)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.Persons)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.FirstName)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.FirstName)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.LastName)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.LastName)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.PhoneNr)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.PhoneNr)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.PhoneNr)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.Email)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Email)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.Email)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Comment)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Comment)
+                    <br />
+                    @Html.ValidationMessageFor(model => model.Comment)
+                </td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        <table align="center">
+            <tr>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Vymazať" />
+                        <br />
+                        @Html.ActionLink("Späť", "Index", null, new { @class = "ActionLinkBtn" })
+                    }
+                </td>
+            </tr>
+        </table>
+        <br />
+    }
+</div>
+
+
+

@@ -1,0 +1,38 @@
+﻿@model chataVlese.Models.Feedback
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="login_containter">
+        <div class="login_wrapper">
+            <div class="login">
+                <div class="rating">
+                    <div class="loginheader">&nbsp &nbsp Hodnotenie &nbsp &nbsp</div>
+                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5">5 stars</label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>
+                </div>
+                <br />
+                <br />
+                <textarea maxlength="150" placeholder="sem napíšte váš komentár" name="feedback"></textarea>
+                <br />
+                <input type="text" placeholder="vaše meno" name="name" />
+                <input type="submit" name="action" value="Pridať komentár" />
+                <input type="submit" name="action" value="Zrušiť" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

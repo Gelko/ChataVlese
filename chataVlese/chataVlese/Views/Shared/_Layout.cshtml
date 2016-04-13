@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Chata v lese - @ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="~/Content/component.css" />
+        <link rel="stylesheet" type="text/css" href="~/CircularContentCarousel/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+        <link rel="stylesheet" type="text/css" href="/CircularContentCarousel/css/jquery.jscrollpane.css" media="all" />
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Coustard:900' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css' />
+        <script src="~/Scripts/modernizr.custom.js"></script>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <header>
+            <section id="login">
+                @Html.Partial("_LoginPartial")
+            </section>
+            <div class="header_name">
+                Chata v lese
+                <img src="/Images/logo.png" />
+            </div>
+        </header>
+
+        <div class="buttons-container">
+            <div class="buttons-wrapper"></div>
+                <div class="buttons">
+                    <nav class="cl-effect-1" id="cl-effect-1">
+                        <a href="/Home/Index">O chate</a>
+                        <a href="/Home/Info">Galéria</a>
+                        <a href="/Home/Activities">Aktivity</a>
+                        <a href="/Reservation/Create">Rezervácia</a>
+                        <a href="/Home/Contact">Kontakt</a>
+                        @{
+                            if (Request.IsAuthenticated)
+                            {
+                                <a href="/Reservation/Index">Správa rezervácií</a>
+                                <a href="/Feedback/Index">Správa hodnotení</a>
+                            }
+                        }
+                        </nav>
+                </div>
+        </div>
+        <div id="body">
+            @RenderBody()
+        </div>
+
+            @Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+
+</body>
+</html>
